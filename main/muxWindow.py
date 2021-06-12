@@ -15,8 +15,9 @@ class muxWindow(QtWidgets.QMainWindow):
 
     def runExperiment(self):
         numSweeps = int(self.numSweeps.displayText())
+        port = str(self.portName.displayText())
 
-        sweeper = Mux("COM3")
+        sweeper = Mux(port)
         sweeper.sweepPlate(numSweeps)
 
         self.testDone.setStyleSheet("background-color: lightgreen")
