@@ -1,0 +1,26 @@
+Commands:
+ABORt
+DISPlay:TEXT '<string>'
+OUTPut[:STATe] {OFF|0|ON|1}, (@<ch_list>)
+ROUTe:CLOSe (@<ch_list>)
+ROUTe:CLOSe:EXCLusive (@<ch_list>)
+ROUTe:MODule:WAIT {1-8|SLOT1-SLOT8|ALL}
+ROUTe:OPEN (@<ch_list>)
+ROUTe:OPEN:ABUS [{1-4|ABUS1-ABUS4|ALL}]
+ROUTe:OPEN:ALL [{1-8|SLOT1-SLOT8|ALL}]
+ROUTe:SEQuence:TRIGger[:IMMediate] <name>
+[SENSe:]TOTalize:CLEar:IMMediate (@<ch_list>)
+SOURce:CURRent[:LEVel] {<current>|MIN|MAX|DEF}, (@<ch_list>)
+SOURce:DIGital:DATA[:{BYTE|1|WORD|2|LWORd|4}] <data>,(@<ch_list>)
+SOURce:DIGital:DATA:BIT {0|1}, <bit>, (@<ch_list>)
+SOURce:FUNCtion:TRIGger:IMMediate (@<ch_list>)
+SOURce:VOLTage[:LEVel] {<voltage>|MIN|MAX|DEF} , (@<ch_list>)
+SYSTem:BEEPer
+SYSTem:DELay[:IMMediate] <time>
+
+Resetting the machine:
+The interface- specific and global error queues are cleared by the *CLS
+(Clear Status) command and when power is cycled. The errors are also
+cleared when you read the error queue. The error queue is not cleared
+by a Factory Reset (*RST command) or an Instrument Preset
+(SYSTem:PRESet command).
