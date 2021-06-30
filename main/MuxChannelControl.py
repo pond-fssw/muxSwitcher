@@ -6,19 +6,11 @@ class MuxChannelController:
         # Initialize system
         rm = visa.ResourceManager()
         mux = rm.open_resource(port)
+
         self.mux = mux
 
         self.resetMux()
         time.sleep(.1)
-
-        self.closeBridgeInit()
-        time.sleep(.1)
-
-    # Close bridge as part of measurement protocol
-    def closeBridgeInit(self):
-        mux = self.mux
-        self.makeContact(1, 913)
-        self.makeContact(1, 923)
 
     def resetMux(self):
         mux = self.mux

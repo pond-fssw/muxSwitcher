@@ -14,15 +14,3 @@ def writeTextFile(path, name, content):
 def numFilesIn(path):
     directory = glob(path + '\\*.txt')
     return len(directory)
-
-"""
-def find_text_file(path):
-    directory = glob(path + '\\*.txt')
-    if len(directory) > 0:
-        print("txt already exists")
-    while True:
-        directory = glob(path + '\\*.txt')
-        if len(directory) > 0:
-            print("found text file")
-            break
-"""

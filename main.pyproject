@@ -1,0 +1,6 @@
+{
+    "files": ["main/runRadiantParser.py",
+              "main/muxWindow.py",
+              "main/ui/muxWindow.ui",
+              "main/ui/runDataParser.ui"]
+}
