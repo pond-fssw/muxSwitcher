@@ -7,16 +7,15 @@ import numpy as np
 import csv
 import os
 
-class RadiantParser:
-    def __init__(self, filePath, newFolder, rawResultFolder, data, numSweeps):
+class RadiantArchiveParser:
+    def __init__(self, parentDirectory, newFolder, rawResultFolder, data=0):
         # Make directories
-        self.parseJson(data, numSweeps)
-        # parentDir = filePath
-        # directory = newFolder
-        # path = os.path.join(parentDir, directory)
-        # os.mkdir(path)
-        # self.directory = parentDir + "/" + directory + "/"
-        self.directory = filePath + '/'
+        parentDir = parentDirectory
+        directory = newFolder
+        path = os.path.join(parentDir, directory)
+        os.mkdir(path)
+        self.directory = parentDir + "/" + directory + "/"
+
         plotPath = os.path.join(self.directory, "plots")
         os.mkdir(plotPath)
 
@@ -31,21 +30,24 @@ class RadiantParser:
         "Loop Overlap 1-2", "Loop Overlap 2-3", "Loop Overlap 1-3"]) 
     
         self.electrodeNumber = 0
+        self.mask = self.getElectrodeNamesMask1()
 
-        dataSets, names = self.compile(rawResultFolder)
-        self.analyse(dataSets)
+        # dataSetGroup1, dataSetGroup2, dataSetGroup3, dataSetGroup4 = self.compile(rawResultFolder)
+        # self.analyse([dataSetGroup1, dataSetGroup2, dataSetGroup3, dataSetGroup4])
 
+        dataSets, dataFiles = self.compile(rawResultFolder)
+        self.analyse(dataSets, dataFiles)
         print("Analysis complete. file.csv made in location")
-
-    def parseJson(self, data, numSweeps):
-        self.numSweeps = numSweeps
-        self.groups = data["Groups"]
-        self.electrodes = data["Electrodes"]
 
     def compile(self, rawResultFolder):
         # File path of data for each group
         print("Analysis start.")
         print("Compiling...")
+
+        # dataGroup1 = rawResultFolder + "/group1_data.txt"
+        # dataGroup2 = rawResultFolder + "/group2_data.txt"
+        # dataGroup3 = rawResultFolder + "/group3_data.txt"
+        # dataGroup4 = rawResultFolder + "/group4_data.txt"
 
         dataFiles = []
         names = []
@@ -56,7 +58,6 @@ class RadiantParser:
                 name = str(name).replace("\\", '')
                 print(name)
                 dataFiles.append(entry.path)
-                dataFiles.sort()
                 names.append(name)
 
         dataSets = []
@@ -64,28 +65,47 @@ class RadiantParser:
             formatter = RadiantOPFormatter(dataFile)
             dataSets.append(formatter.returnDataSets())
 
+        # formatterGroup1 = RadiantOPFormatter(dataGroup1)
+        # formatterGroup2 = RadiantOPFormatter(dataGroup2)
+        # formatterGroup3 = RadiantOPFormatter(dataGroup3)
+        # formatterGroup4 = RadiantOPFormatter(dataGroup4)
+
+        # dataSetGroup1 = formatterGroup1.returnDataSets()
+        # dataSetGroup2 = formatterGroup2.returnDataSets()
+        # dataSetGroup3 = formatterGroup3.returnDataSets()
+        # dataSetGroup4 = formatterGroup4.returnDataSets()
+
         print("Done compiling data.")
         
         return dataSets, names
 
-    def analyse(self, dataSets):
+    def analyse(self, dataSets, dataFiles):
+        # print(len(dataSets))
         print("Analysis started.")
+        groupNumber = 1
 
-        for dataSet, group in zip(dataSets, self.groups):
-            self.analysePerGroup(dataSet, group)
+        for dataSet, dataFile in zip(dataSets, dataFiles):
+            print(type(dataSet))
+            # self.analysePerGroup(dataSet, groupNumber)
+            self.analysePerGroup(dataSet, dataFile)
+            groupNumber += 1
     
+    ####################################### make this more general (not just 3 sweeps)
     # Write header if it is the first of its group.
     def analysePerGroup(self, dataSets, groupNumber):
             numSweepsTotal = len(dataSets)
-            numElectrodes = numSweepsTotal//self.numSweeps
+            numElectrodes = numSweepsTotal//3
 
-            for electrodeNumber in np.arange(numElectrodes):
-                start = electrodeNumber * self.numSweeps
-                sweepsOfThisElectrode = np.arange(start, start+self.numSweeps)
+            # for electrodeNumber in np.arange(numElectrodes):
+            #     start = electrodeNumber * 3
+            #     sweepsOfThisElectrode = [start, start+1, start+2]
 
-                # This is for each electrode (per 3 sweeps)
-                self.analyseElectrode(sweepsOfThisElectrode, dataSets, groupNumber, electrodeNumber)
-    
+            #     # This is for each electrode (per 3 sweeps)
+            #     self.analyseElectrode(sweepsOfThisElectrode, dataSets, groupNumber, electrodeNumber)
+
+            sweepsOfThisElectrode = np.arange(numSweepsTotal)
+            self.analyseElectrode(sweepsOfThisElectrode, dataSets, groupNumber, electrodeNumber=1)
+
     def analyseElectrode(self, sweepIndices, dataSets, groupNumber, electrodeNumber):
         electrodeResults = []
         fields = []
@@ -102,11 +122,11 @@ class RadiantParser:
 
         processedResults, yInt, polMaxE, loopArea = self.compileResults(electrodeResults)
         electrodeNumber = electrodeNumber + 1
-        electrodeName = self.electrodes[self.electrodeNumber]
+        electrodeName = self.mask[self.electrodeNumber]
         self.writeResults(electrodeName, groupNumber, electrodeNumber, processedResults, yInt, polMaxE, loopArea)
         self.electrodeNumber += 1
 
-        filePath = self.directory + "/plots/" + str(groupNumber) + "no" + str(electrodeNumber) + ".png"
+        filePath = self.directory + "/plots/" + str(groupNumber) + ".png"
         self.plotAndSave(fields, polarizations, filePath, groupNumber, electrodeNumber)
 
     def writeResults(self, electrodeName, group, channel, processedResults, yInt, polMaxE, loopArea):
@@ -144,7 +164,18 @@ class RadiantParser:
 
         plt.xlabel("Field Applied [kV/cm]")
         plt.ylabel("Measured Polarization")
-        plt.title("Electron from " + str(groupNum) + ", Number " + str(electrodeNum))
+        plt.title(str(groupNum))
         plt.legend()
 
         plt.savefig(filePath, bbox_inches='tight', dpi=1200)
+
+    def getElectrodeNamesMask1(self):
+        # electrodes = ["'1-1", "'1-2", "'1-3", "'1-4",
+        # "'2-2", "'2-4", "'3-1", "'3-2", "'3-3", "'3-4", "'4-2", "'4-4",
+        # "K1-1", "K1-2", "K2-1", "K2-2",
+        # "F-1", "F-2", "F-3", "F-4", "F-5", "F-6", "F-7", "F-8", "F-9", "F-10",
+        # "F-11", "F-12", "F-13", "F-14", "F-15", "F-16", "F-17", "F-18",
+        # "UC-1L", "UC-1R", "UC-2L", "UC-2R", "UC-3L", "UC-3R", "UC-4L", "UC-4R",
+        # "UC-5L", "UC-5R", "UC-6L", "UC-6R", "UC-7L", "UC-7R", "UC-8L", "UC-8R"]
+        electrodes = np.ones(50)
+        return electrodes

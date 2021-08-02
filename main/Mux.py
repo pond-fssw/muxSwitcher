@@ -7,8 +7,10 @@ from fileCreator import writeTextFile, numFilesIn
 import numpy as np
 
 class Mux:
-    def __init__(self, port):
-        self.muxController = MuxChannelController(port)
+    def __init__(self, maskData):
+        self.port = maskData["Port"]
+        self.muxController = MuxChannelController(self.port)
+        self.channelsToClose = maskData["Channels"]
 
     def sweepPlate(self, numSweeps):
         self.closeBridges()
@@ -16,7 +18,7 @@ class Mux:
 
         testCount = 0
 
-        for electrodeID in (np.arange(50) + 1):
+        for electrodeID in (self.channelsToClose):
             self.startThisElectrode(electrodeID)    # Connects to this electrode.
 
             for sweepNumber in (np.arange(numSweeps) + 1):

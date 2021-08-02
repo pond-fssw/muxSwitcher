@@ -1,5 +1,4 @@
 from ParseRadiantOP import RadiantParser
-from ParseArchivedRadiantOP import RadiantArchiveParser
 
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -21,7 +20,6 @@ class parserWindow(QtWidgets.QMainWindow):
         rawResultFolder = str(self.rawDataPath.displayText())
 
         RadiantParser(newFolderDirectory, newFolder=newFolderName, rawResultFolder=rawResultFolder)
-        #RadiantArchiveParser(newFolderDirectory, newFolder=newFolderName, rawResultFolder=rawResultFolder)
 
         self.done.setText("Yes")
 

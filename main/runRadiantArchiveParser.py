@@ -20,8 +20,8 @@ class parserWindow(QtWidgets.QMainWindow):
         newFolderName = str(self.newFolderName.displayText())
         rawResultFolder = str(self.rawDataPath.displayText())
 
-        RadiantParser(newFolderDirectory, newFolder=newFolderName, rawResultFolder=rawResultFolder)
-        #RadiantArchiveParser(newFolderDirectory, newFolder=newFolderName, rawResultFolder=rawResultFolder)
+        # RadiantParser(newFolderDirectory, newFolder=newFolderName, rawResultFolder=rawResultFolder)
+        RadiantArchiveParser(newFolderDirectory, newFolder=newFolderName, rawResultFolder=rawResultFolder)
 
         self.done.setText("Yes")
 

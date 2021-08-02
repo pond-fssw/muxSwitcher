@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>615</width>
-    <height>350</height>
+    <width>390</width>
+    <height>250</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>615</width>
+    <width>390</width>
     <height>250</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>615</width>
-    <height>350</height>
+    <width>390</width>
+    <height>250</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -31,78 +31,35 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>611</width>
-      <height>301</height>
+      <width>381</width>
+      <height>201</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
       <string>Mux Switcher</string>
      </attribute>
-     <widget class="QLineEdit" name="numSweeps">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>20</y>
-        <width>31</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>3</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>10</y>
+        <y>50</y>
         <width>261</width>
         <height>31</height>
        </rect>
       </property>
       <property name="text">
-       <string>Number of sweeps per electrode (3 recommended)</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="testDone">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>230</y>
-        <width>20</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: red
-</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_2">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>230</y>
-        <width>101</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Test Progress:</string>
+       <string>Number of sweeps per electrode</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushRun">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>230</y>
+        <y>110</y>
         <width>91</width>
         <height>22</height>
        </rect>
@@ -115,91 +72,67 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>60</y>
+        <y>20</y>
         <width>131</width>
         <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>Mask Option (Choose one)</string>
+       <string>Mask</string>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>60</y>
-        <width>72</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Mask 1</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_2">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>60</y>
-        <width>72</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Mask 2</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_3">
-      <property name="geometry">
-       <rect>
-        <x>420</x>
-        <y>60</y>
-        <width>91</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Smaller Test</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_12">
+     <widget class="QLabel" name="switchNotice">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>100</y>
-        <width>301</width>
-        <height>21</height>
+        <y>210</y>
+        <width>71</width>
+        <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>Test option (Choose one or none at all)</string>
+       <string/>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_6">
+     <widget class="QComboBox" name="maskOptionSwitcher">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>140</y>
-        <width>381</width>
+        <x>220</x>
+        <y>20</y>
+        <width>141</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string/>
+       </property>
+      </item>
+     </widget>
+     <widget class="QCheckBox" name="automaticallyParse">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>110</y>
+        <width>221</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string>One from each group (Mask 1)</string>
+       <string>Automatically parse Radiant output data</string>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_7">
+     <widget class="QSpinBox" name="numSweeps">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>180</y>
-        <width>381</width>
-        <height>20</height>
+        <x>220</x>
+        <y>60</y>
+        <width>141</width>
+        <height>22</height>
        </rect>
       </property>
-      <property name="text">
-       <string>One from each group (Mask 2)</string>
+      <property name="value">
+       <number>3</number>
       </property>
      </widget>
     </widget>
@@ -210,7 +143,7 @@
      <widget class="QLabel" name="label_8">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>620</x>
         <y>10</y>
         <width>131</width>
         <height>31</height>
@@ -223,7 +156,7 @@
      <widget class="QLineEdit" name="rawResults">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>750</x>
         <y>20</y>
         <width>141</width>
         <height>21</height>
@@ -233,8 +166,8 @@
      <widget class="QLabel" name="label_6">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>80</y>
+        <x>900</x>
+        <y>90</y>
         <width>131</width>
         <height>16</height>
        </rect>
@@ -246,8 +179,8 @@
      <widget class="QLineEdit" name="folderName">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>120</y>
+        <x>750</x>
+        <y>130</y>
         <width>141</width>
         <height>21</height>
        </rect>
@@ -256,8 +189,8 @@
      <widget class="QLabel" name="label_5">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>120</y>
+        <x>900</x>
+        <y>130</y>
         <width>101</width>
         <height>16</height>
        </rect>
@@ -269,8 +202,8 @@
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>80</y>
+        <x>620</x>
+        <y>90</y>
         <width>71</width>
         <height>20</height>
        </rect>
@@ -282,8 +215,8 @@
      <widget class="QLineEdit" name="filePath">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>80</y>
+        <x>750</x>
+        <y>90</y>
         <width>141</width>
         <height>21</height>
        </rect>
@@ -292,8 +225,8 @@
      <widget class="QLabel" name="label_4">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>120</y>
+        <x>620</x>
+        <y>130</y>
         <width>121</width>
         <height>20</height>
        </rect>
@@ -305,7 +238,7 @@
      <widget class="QLabel" name="label_7">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>620</x>
         <y>50</y>
         <width>571</width>
         <height>16</height>
@@ -318,7 +251,7 @@
      <widget class="QLabel" name="label_9">
       <property name="geometry">
        <rect>
-        <x>290</x>
+        <x>900</x>
         <y>20</y>
         <width>171</width>
         <height>16</height>
@@ -328,69 +261,84 @@
        <string>ex. C:/Users/RadiantOutput</string>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_4">
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>160</y>
-        <width>72</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Mask 1</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_10">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>160</y>
+        <y>20</y>
         <width>171</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string>Mask Type (Choose one):</string>
+       <string>Mask</string>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_5">
-      <property name="geometry">
-       <rect>
-        <x>310</x>
-        <y>160</y>
-        <width>72</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Mask 2</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_8">
-      <property name="geometry">
-       <rect>
-        <x>450</x>
-        <y>160</y>
-        <width>72</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Neither</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="runDataParser">
+     <widget class="QPushButton" name="runParser">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>220</y>
-        <width>561</width>
+        <y>120</y>
+        <width>351</width>
         <height>22</height>
        </rect>
       </property>
       <property name="text">
        <string>Run Data Parser</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="parserNotice">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>200</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="maskOptionParser">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>20</y>
+        <width>131</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string/>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>191</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Number of sweeps per electrode</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="numSweeps_parser">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>60</y>
+        <width>131</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="value">
+       <number>3</number>
       </property>
      </widget>
     </widget>
@@ -401,13 +349,13 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>615</width>
+     <width>390</width>
      <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuRun_Test">
     <property name="title">
-     <string>Mux-Radiant Communication</string>
+     <string>Mux-Radiant Control</string>
     </property>
    </widget>
    <addaction name="menuRun_Test"/>
