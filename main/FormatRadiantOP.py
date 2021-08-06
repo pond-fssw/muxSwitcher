@@ -5,7 +5,8 @@ import numpy as np
 from DataSetFormat import DataSetFormatter
 
 class RadiantOPFormatter:
-    def __init__(self, dataFileDirectory):
+    def __init__(self, dataFileDirectory, sweepType):
+        self.sweepType = sweepType
         self.file = open(dataFileDirectory, "r")
         self.dataSets = []
         self.offsets = []
@@ -37,8 +38,9 @@ class RadiantOPFormatter:
 
         print("Done classifying.")
 
-        for dataSet, offset in zip(self.dataSets, self.offsets):
-            dataSet.addOffset(offset)
+        if self.sweepType is "Monopolar":
+            for dataSet, offset in zip(self.dataSets, self.offsets):
+                dataSet.addOffset(offset)
 
         print("Done applying offset.")
 

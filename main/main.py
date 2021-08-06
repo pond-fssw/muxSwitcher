@@ -11,10 +11,10 @@ class muxWindow(QtWidgets.QMainWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         uic.loadUi("ui/muxWindow.ui", self)
-        
         self.init_ui()
 
     def init_ui(self):
+        self.setWindowTitle("Frore Systems - Mux-Radiant Control")
         self.pushRun.clicked.connect(self.runExperiment)
         self.runParser.clicked.connect(self.analyseDataOnlyParse)
         self.generateDropdown()
@@ -35,7 +35,7 @@ class muxWindow(QtWidgets.QMainWindow):
         checked = self.automaticallyParse.isChecked()
         maskData = self.parseJson("Switcher")
         self.numSweepsInt = int(self.numSweeps.value())
-        port = "USB0::0x0957::0x0507::MY44004129::INSTR"
+        #port = "USB0::0x0957::0x0507::MY44004129::INSTR"
 
         self.pushRun.setEnabled(False)
         sweeper = Mux(maskData)

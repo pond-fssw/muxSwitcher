@@ -1,0 +1,6 @@
+Dear Anyone Using This Control Center (probably Carl),
+
+The setup to run on the json file can be whatever you want. You just need the number of groups and test in the .json to correspond to your Radiant setup.
+
+Best,
+Pond

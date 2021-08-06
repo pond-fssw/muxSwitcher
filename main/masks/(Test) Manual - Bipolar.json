@@ -1,0 +1,14 @@
+{
+    "Mask": "Mask 2",
+    "Type": "Bipolar",
+    "Port": "USB0::0x0957::0x0507::MY44004129::INSTR",
+    "Groups": [1, 2],
+    "Channels": [
+        1, 
+        2
+    ],
+    "Electrodes": [
+        "K1m-1",
+        "k1m-2"
+    ]
+}

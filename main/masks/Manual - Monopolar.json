@@ -1,5 +1,6 @@
 {
     "Mask": "Manual",
+    "Type": "Monopolar",
     "Groups": ["1mm", "2mm", "3mm", "Keyhole", "F8X12", "UC"],
     "Channel List": [
         1,

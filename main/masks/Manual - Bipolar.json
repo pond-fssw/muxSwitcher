@@ -1,9 +1,9 @@
 {
     "Mask": "Mask 2",
-    "Type": "Monopolar",
+    "Type": "Bipolar",
     "Port": "USB0::0x0957::0x0507::MY44004129::INSTR",
     "Groups": ["1mm", "2mm", "3mm", "Keyhole", "F8X12", "UC"],
-    "Channels": [
+    "Channel List": [
         1,
         2,
         3,
@@ -59,7 +59,7 @@
         53,
         54
     ],
-    "Electrodes": [
+    "Electrode List": [
         "K1m-1",
         "k1m-2",
         "k1m-3",
